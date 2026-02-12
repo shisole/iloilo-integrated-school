@@ -13,7 +13,7 @@
 				'Iloilo Integrated School Inc. was founded with a vision to provide quality, accessible education to the children of Iloilo. Starting with just a handful of students, the school opened its doors with heart and determination.'
 		},
 		{
-			year: '2006',
+			year: '2005',
 			title: 'Growing Together',
 			description:
 				'As word spread about our nurturing approach to education, enrollment grew steadily. New classrooms were added, and our dedicated faculty expanded to meet the needs of our growing school family.'
