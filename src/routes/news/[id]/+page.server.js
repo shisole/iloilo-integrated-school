@@ -1,8 +1,9 @@
 import { error } from '@sveltejs/kit';
-import { client } from '$lib/sanity/client.js';
+import { getClient } from '$lib/sanity/client.js';
 import { eventByIdQuery } from '$lib/sanity/queries.js';
 
 export async function load({ params }) {
+	const client = getClient();
 	if (!client) error(503, 'CMS not configured');
 
 	const event = await client.fetch(eventByIdQuery, { id: params.id });

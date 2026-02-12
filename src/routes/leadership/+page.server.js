@@ -1,7 +1,8 @@
-import { client } from '$lib/sanity/client.js';
+import { getClient } from '$lib/sanity/client.js';
 import { leadersQuery } from '$lib/sanity/queries.js';
 
 export async function load() {
+	const client = getClient();
 	if (!client) return { leaders: [] };
 
 	try {

@@ -1,18 +1,15 @@
 import { createClient } from '@sanity/client';
-import {
-	PUBLIC_SANITY_PROJECT_ID,
-	PUBLIC_SANITY_DATASET,
-	PUBLIC_SANITY_API_VERSION
-} from '$env/static/public';
+import { SANITY_CONFIG } from './config.js';
 
-const projectId = PUBLIC_SANITY_PROJECT_ID;
-const isSanityConfigured = projectId && /^[a-z0-9-]+$/.test(projectId);
-
-export const client = isSanityConfigured
-	? createClient({
-			projectId,
-			dataset: PUBLIC_SANITY_DATASET || 'production',
-			apiVersion: PUBLIC_SANITY_API_VERSION || '2025-02-06',
-			useCdn: true
-		})
-	: null;
+export function getClient() {
+	const { projectId, dataset, apiVersion } = SANITY_CONFIG;
+	const isSanityConfigured = projectId && /^[a-z0-9-]+$/.test(projectId);
+	return isSanityConfigured
+		? createClient({
+				projectId,
+				dataset,
+				apiVersion,
+				useCdn: true
+			})
+		: null;
+}

@@ -1,8 +1,9 @@
-import { client } from '$lib/sanity/client.js';
+import { getClient } from '$lib/sanity/client.js';
 import { allPostsQuery, totalPostsQuery } from '$lib/sanity/queries.js';
 import { POSTS_PER_PAGE } from '$lib/utils/constants.js';
 
 export async function load() {
+	const client = getClient();
 	if (!client) return { posts: [], totalPosts: 0 };
 
 	try {
