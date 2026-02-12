@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-accent-yellow: #fefe9d;
+	--color-accent-yellow-dark: #e6e68d;
+	--color-accent-blue: #9bb8f0;
+	--color-accent-blue-dark: #7a9ad4;
+	--color-page: #f7fcfe;
+	--color-card: #ffffff;
+
+	--font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+	--font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}
