@@ -7,8 +7,13 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
 	email,
 	facebookUrl,
 	enrollmentUrl,
-	heroImage,
-	schoolStory
+	heroImages,
+	schoolStory,
+	milestones[]{ year, title, description, image },
+	missionText,
+	missionImage,
+	visionText,
+	visionImage
 }`;
 
 export const latestEventsQuery = `*[_type == "event" && eventDate >= now()] | order(eventDate asc)[0...4]{

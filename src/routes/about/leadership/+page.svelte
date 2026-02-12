@@ -14,7 +14,7 @@
 
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
-		<Breadcrumb items={[{ label: 'Leadership' }]} />
+		<Breadcrumb items={[{ label: 'About Us', href: '/about' }, { label: 'Leadership' }]} />
 		<SectionHeading
 			title="Our Leadership"
 			subtitle="Meet the dedicated people who guide, teach, and inspire our students every day"

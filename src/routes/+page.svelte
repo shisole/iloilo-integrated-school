@@ -15,5 +15,5 @@
 
 <Hero settings={data.settings} />
 <WhatsHappening events={data.events} pastEvents={data.pastEvents} />
-<SchoolStory />
+<SchoolStory settings={data.settings} />
 <CallToAction settings={data.settings} />

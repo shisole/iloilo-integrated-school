@@ -1,8 +1,11 @@
 <script>
+	import { urlFor } from '$lib/sanity/image.js';
 	import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
 	import StoryTimelineItem from './StoryTimelineItem.svelte';
 
-	const milestones = [
+	let { settings = null } = $props();
+
+	const fallbackMilestones = [
 		{
 			year: '2001',
 			title: 'The Beginning',
@@ -34,6 +37,19 @@
 				'With over two decades of service, Iloilo Integrated School continues to be a beacon of learning and growth in the community — nurturing the next generation of leaders, dreamers, and achievers.'
 		}
 	];
+
+	let milestones = $derived(
+		settings?.milestones?.length ? settings.milestones : fallbackMilestones
+	);
+
+	let imageRowCounter = $derived.by(() => {
+		let counter = 0;
+		return milestones.map((m) => {
+			const imageUrl = m.image ? urlFor(m.image).width(480).quality(80).url() : null;
+			const row = imageUrl ? counter++ : 0;
+			return { ...m, imageUrl, imageRow: row };
+		});
+	});
 </script>
 
 <section class="py-20 md:py-28">
@@ -42,12 +58,14 @@
 
 		<div class="relative mt-16 border-l-2 border-accent-blue/30 pl-6 md:border-l-0 md:pl-0">
 			<div class="space-y-8 md:space-y-12">
-				{#each milestones as milestone, i}
+				{#each imageRowCounter as milestone, i}
 					<StoryTimelineItem
 						year={milestone.year}
 						title={milestone.title}
 						description={milestone.description}
 						index={i}
+						imageRow={milestone.imageRow}
+						imageUrl={milestone.imageUrl}
 					/>
 				{/each}
 			</div>
