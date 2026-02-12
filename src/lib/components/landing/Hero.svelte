@@ -6,7 +6,7 @@
 	let foundedYear = $derived(settings?.foundedYear || 2001);
 </script>
 
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+<section class="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
 	<!-- Background gradient -->
 	<div
 		class="absolute inset-0 bg-gradient-to-br from-accent-blue/30 via-page to-accent-yellow/20"
@@ -59,7 +59,12 @@
 	</div>
 
 	<!-- Scroll indicator -->
-	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+	<button
+		type="button"
+		class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors hover:bg-gray-900/10"
+		aria-label="Scroll to What's Happening"
+		onclick={() => document.getElementById('whats-happening')?.scrollIntoView({ behavior: 'smooth' })}
+	>
 		<svg
 			class="h-6 w-6 text-gray-400"
 			fill="none"
@@ -73,5 +78,5 @@
 				d="M19 14l-7 7m0 0l-7-7m7 7V3"
 			/>
 		</svg>
-	</div>
+	</button>
 </section>

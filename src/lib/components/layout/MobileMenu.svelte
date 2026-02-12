@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/state';
+	import { fly, fade } from 'svelte/transition';
 
 	let { isOpen = false, onClose } = $props();
 
@@ -18,22 +19,21 @@
 	}
 </script>
 
-<!-- Overlay backdrop -->
 {#if isOpen}
 	<div class="fixed inset-0 z-50 md:hidden">
 		<!-- Backdrop -->
 		<button
 			type="button"
-			class="fixed inset-0 bg-black/40 transition-opacity"
+			class="fixed inset-0 bg-black/40"
 			onclick={onClose}
 			aria-label="Close menu"
+			transition:fade={{ duration: 200 }}
 		></button>
 
 		<!-- Drawer -->
 		<div
-			class="fixed inset-y-0 right-0 w-72 transform bg-white shadow-xl transition-transform duration-300 ease-in-out {isOpen
-				? 'translate-x-0'
-				: 'translate-x-full'}"
+			class="fixed inset-y-0 right-0 w-72 bg-white shadow-xl"
+			transition:fly={{ x: 288, duration: 300 }}
 		>
 			<!-- Close button -->
 			<div class="flex items-center justify-end p-4">

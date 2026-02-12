@@ -1,6 +1,7 @@
 <script>
 	import SEO from '$lib/components/shared/SEO.svelte';
 	import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+	import Breadcrumb from '$lib/components/shared/Breadcrumb.svelte';
 	import LeaderGrid from '$lib/components/leadership/LeaderGrid.svelte';
 
 	let { data } = $props();
@@ -13,6 +14,7 @@
 
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
+		<Breadcrumb items={[{ label: 'Leadership' }]} />
 		<SectionHeading
 			title="Our Leadership"
 			subtitle="Meet the dedicated people who guide, teach, and inspire our students every day"

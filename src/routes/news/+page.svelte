@@ -1,6 +1,7 @@
 <script>
 	import SEO from '$lib/components/shared/SEO.svelte';
 	import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+	import Breadcrumb from '$lib/components/shared/Breadcrumb.svelte';
 	import ScrollReveal from '$lib/components/shared/ScrollReveal.svelte';
 	import EventCard from '$lib/components/landing/EventCard.svelte';
 
@@ -14,6 +15,7 @@
 
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
+		<Breadcrumb items={[{ label: 'News' }]} />
 		<SectionHeading
 			title="News & Events"
 			subtitle="Stay updated with all school events and activities"

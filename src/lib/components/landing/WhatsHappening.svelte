@@ -7,7 +7,7 @@
 	let allEvents = $derived([...events, ...pastEvents]);
 </script>
 
-<section class="bg-accent-blue/5 py-20 md:py-28">
+<section id="whats-happening" class="bg-accent-blue/5 py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
 		<SectionHeading
 			title="What's Happening"

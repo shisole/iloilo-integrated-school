@@ -1,6 +1,7 @@
 <script>
 	import SEO from '$lib/components/shared/SEO.svelte';
 	import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+	import Breadcrumb from '$lib/components/shared/Breadcrumb.svelte';
 	import BlogList from '$lib/components/blog/BlogList.svelte';
 	import LoadMoreButton from '$lib/components/blog/LoadMoreButton.svelte';
 	import { POSTS_PER_PAGE } from '$lib/utils/constants.js';
@@ -34,6 +35,7 @@
 
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
+		<Breadcrumb items={[{ label: 'Blog' }]} />
 		<SectionHeading
 			title="School News & Updates"
 			subtitle="Stories, announcements, and highlights from our school community"
