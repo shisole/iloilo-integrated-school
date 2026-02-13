@@ -10,7 +10,8 @@
 	const navLinks = [
 		{ href: '/', label: 'Home' },
 		{ href: '/news', label: 'News' },
-		{ href: '/blog', label: 'Blog' }
+		{ href: '/blog', label: 'Blog' },
+		{ href: '/gallery', label: 'Gallery' }
 	];
 
 	const aboutDropdown = [

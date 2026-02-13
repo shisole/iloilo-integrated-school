@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getClient } from '$lib/sanity/client.js';
 import { eventByIdQuery } from '$lib/sanity/queries.js';
+import { fetchKeepslyPhotos } from '$lib/utils/keepsly.js';
 
 export async function load({ params }) {
 	const client = getClient();
@@ -12,5 +13,11 @@ export async function load({ params }) {
 		error(404, 'Event not found');
 	}
 
-	return { event };
+	let galleryPhotos = [];
+	if (event.keepslyEventId) {
+		const { photos } = await fetchKeepslyPhotos(event.keepslyEventId);
+		galleryPhotos = photos;
+	}
+
+	return { event, galleryPhotos };
 }

@@ -1,9 +1,10 @@
 <script>
 	import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
 	import ScrollReveal from '$lib/components/shared/ScrollReveal.svelte';
+	import SkeletonCard from '$lib/components/shared/SkeletonCard.svelte';
 	import EventCard from './EventCard.svelte';
 
-	let { events = [], pastEvents = [] } = $props();
+	let { events = [], pastEvents = [], loading = false } = $props();
 	let allEvents = $derived([...events, ...pastEvents]);
 </script>
 
@@ -14,7 +15,13 @@
 			subtitle="Stay up to date with the latest events and activities at our school"
 		/>
 
-		{#if allEvents.length > 0}
+		{#if loading}
+			<div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{#each Array(4) as _}
+					<SkeletonCard variant="event" />
+				{/each}
+			</div>
+		{:else if allEvents.length > 0}
 			<ScrollReveal>
 				{#snippet children()}
 					<div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

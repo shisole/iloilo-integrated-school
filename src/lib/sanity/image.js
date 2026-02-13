@@ -7,5 +7,5 @@ const builder = SANITY_CONFIG.projectId
 
 export function urlFor(source) {
 	if (!builder) return { url: () => '', width: () => ({ height: () => ({ url: () => '' }) }) };
-	return builder.image(source);
+	return builder.image(source).auto('format').quality(80);
 }

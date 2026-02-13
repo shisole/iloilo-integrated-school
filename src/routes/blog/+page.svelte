@@ -42,7 +42,7 @@
 		/>
 
 		<div class="mt-12">
-			<BlogList {posts} />
+			<BlogList {posts} loadingCount={isLoading ? POSTS_PER_PAGE : 0} />
 			<LoadMoreButton onclick={loadMore} {isLoading} {hasMore} />
 		</div>
 	</div>

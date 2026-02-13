@@ -1,16 +1,20 @@
 <script>
 	import ScrollReveal from '$lib/components/shared/ScrollReveal.svelte';
+	import SkeletonCard from '$lib/components/shared/SkeletonCard.svelte';
 	import BlogCard from './BlogCard.svelte';
 
-	let { posts = [] } = $props();
+	let { posts = [], loadingCount = 0 } = $props();
 </script>
 
-{#if posts.length > 0}
+{#if posts.length > 0 || loadingCount > 0}
 	<ScrollReveal>
 		{#snippet children()}
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{#each posts as post}
 					<BlogCard {post} />
+				{/each}
+				{#each Array(loadingCount) as _}
+					<SkeletonCard variant="blog" />
 				{/each}
 			</div>
 		{/snippet}

@@ -174,7 +174,7 @@
 	<!-- Scroll indicator -->
 	<button
 		type="button"
-		class="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors {hasImages
+		class="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors {hasImages
 			? 'hover:bg-white/20'
 			: 'hover:bg-gray-900/10'}"
 		aria-label="Scroll to What's Happening"

@@ -102,7 +102,25 @@ export const eventByIdQuery = `*[_type == "event" && _id == $id][0]{
 	endDate,
 	location,
 	image,
-	isFeatured
+	isFeatured,
+	keepslyEventId
+}`;
+
+export const latestGalleryEventsQuery = `*[_type == "event" && defined(keepslyEventId)] | order(eventDate desc)[0...2]{
+	_id,
+	title,
+	eventDate,
+	keepslyEventId
+}`;
+
+export const eventsWithGalleryQuery = `*[_type == "event" && defined(keepslyEventId)] | order(eventDate desc){
+	_id,
+	title,
+	description,
+	eventDate,
+	location,
+	image,
+	keepslyEventId
 }`;
 
 export const leadersQuery = `*[_type == "leader"] | order(order asc){

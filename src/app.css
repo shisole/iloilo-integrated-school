@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @theme {
 	--color-accent-yellow: #fefe9d;
@@ -8,8 +9,13 @@
 	--color-page: #f7fcfe;
 	--color-card: #ffffff;
 
-	--font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
-	--font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;
+	--animate-skeleton: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+	0% { opacity: 1; }
+	50% { opacity: 0.4; }
+	100% { opacity: 1; }
 }
 
 html {
