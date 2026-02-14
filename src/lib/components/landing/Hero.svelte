@@ -104,20 +104,20 @@
 			{tagline}
 		</p>
 
-		<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+		<div class="flex flex-col items-center justify-center gap-3 px-4 sm:flex-row sm:gap-4 sm:px-0">
 			<a
-				href={settings?.enrollmentUrl || '#contact'}
-				class="rounded-full bg-accent-yellow px-8 py-3.5 font-semibold text-gray-800 shadow-lg transition hover:bg-accent-yellow-dark hover:shadow-xl"
+				href={settings?.enrollmentUrl || '/admissions'}
+				class="w-full rounded-full bg-accent-yellow px-8 py-3.5 text-center font-semibold text-gray-800 shadow-lg transition hover:bg-accent-yellow-dark hover:shadow-xl sm:w-auto"
 			>
 				Enroll Now
 			</a>
 			<a
-				href="/blog"
-				class="rounded-full border-2 px-8 py-3.5 font-semibold transition {hasImages
+				href="/about"
+				class="w-full rounded-full border-2 px-8 py-3.5 text-center font-semibold transition sm:w-auto {hasImages
 					? 'border-white/70 text-white hover:bg-white/20'
 					: 'border-accent-blue text-gray-700 hover:bg-accent-blue/20'}"
 			>
-				Read Our Stories
+				Learn More
 			</a>
 		</div>
 	</div>
@@ -157,7 +157,7 @@
 		</button>
 
 		<!-- Dot indicators -->
-		<div class="absolute bottom-16 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+		<div class="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 md:bottom-16">
 			{#each images as _, i}
 				<button
 					type="button"
@@ -171,10 +171,10 @@
 		</div>
 	{/if}
 
-	<!-- Scroll indicator -->
+	<!-- Scroll indicator (desktop only) -->
 	<button
 		type="button"
-		class="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors {hasImages
+		class="absolute bottom-2 left-1/2 z-20 hidden -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors md:block {hasImages
 			? 'hover:bg-white/20'
 			: 'hover:bg-gray-900/10'}"
 		aria-label="Scroll to What's Happening"

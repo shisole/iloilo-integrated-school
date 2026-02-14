@@ -1,17 +1,18 @@
 import { getClient } from '$lib/sanity/client.js';
-import { latestEventsQuery, latestPostsQuery, pastEventsQuery, latestGalleryEventsQuery } from '$lib/sanity/queries.js';
+import { latestEventsQuery, latestPostsQuery, pastEventsQuery, latestGalleryEventsQuery, latestFacebookPostsQuery } from '$lib/sanity/queries.js';
 import { fetchKeepslyPhotos } from '$lib/utils/keepsly.js';
 
 export async function load() {
 	const client = getClient();
-	if (!client) return { events: [], pastEvents: [], posts: [], galleryPreview: [] };
+	if (!client) return { events: [], pastEvents: [], posts: [], galleryPreview: [], facebookPosts: [] };
 
 	try {
-		const [events, pastEvents, posts, galleryEvents] = await Promise.all([
+		const [events, pastEvents, posts, galleryEvents, facebookPosts] = await Promise.all([
 			client.fetch(latestEventsQuery),
 			client.fetch(pastEventsQuery),
 			client.fetch(latestPostsQuery),
-			client.fetch(latestGalleryEventsQuery)
+			client.fetch(latestGalleryEventsQuery),
+			client.fetch(latestFacebookPostsQuery)
 		]);
 
 		let galleryPreview = [];
@@ -29,9 +30,10 @@ export async function load() {
 			events: events || [],
 			pastEvents: pastEvents || [],
 			posts: posts || [],
-			galleryPreview
+			galleryPreview,
+			facebookPosts: facebookPosts || []
 		};
 	} catch {
-		return { events: [], pastEvents: [], posts: [], galleryPreview: [] };
+		return { events: [], pastEvents: [], posts: [], galleryPreview: [], facebookPosts: [] };
 	}
 }

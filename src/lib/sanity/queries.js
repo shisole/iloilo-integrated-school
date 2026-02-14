@@ -159,3 +159,11 @@ export const allEventsQuery = `*[_type == "event"] | order(eventDate asc){
 	image,
 	isFeatured
 }`;
+
+export const latestFacebookPostsQuery = `*[_type == "facebookPost"] | order(postedAt desc)[0...6]{
+	_id,
+	content,
+	image,
+	postUrl,
+	postedAt
+}`;
