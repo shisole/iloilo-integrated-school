@@ -11,12 +11,16 @@
 		{ href: '/', label: 'Home' },
 		{ href: '/news', label: 'News' },
 		{ href: '/blog', label: 'Blog' },
-		{ href: '/gallery', label: 'Gallery' }
+		{ href: '/gallery', label: 'Gallery' },
+		{ href: '/admissions', label: 'Admissions' },
+		{ href: '/contact', label: 'Contact' }
 	];
 
 	const aboutDropdown = [
 		{ href: '/about', label: 'Mission & Vision' },
-		{ href: '/about/leadership', label: 'Leadership' }
+		{ href: '/about/leadership', label: 'Leadership' },
+		{ href: '/calendar', label: 'Calendar' },
+		{ href: '/faq', label: 'FAQ' }
 	];
 
 	function isActive(href) {
@@ -26,7 +30,11 @@
 		return page.url.pathname.startsWith(href);
 	}
 
-	let isAboutActive = $derived(page.url.pathname.startsWith('/about'));
+	let isAboutActive = $derived(
+		page.url.pathname.startsWith('/about') ||
+		page.url.pathname.startsWith('/calendar') ||
+		page.url.pathname.startsWith('/faq')
+	);
 </script>
 
 {#if isOpen}

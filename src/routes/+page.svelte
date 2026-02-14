@@ -5,6 +5,8 @@
 	import WhatsHappening from '$lib/components/landing/WhatsHappening.svelte';
 	import CallToAction from '$lib/components/landing/CallToAction.svelte';
 	import GalleryPreview from '$lib/components/landing/GalleryPreview.svelte';
+	import FacebookFeed from '$lib/components/landing/FacebookFeed.svelte';
+	import FindUs from '$lib/components/landing/FindUs.svelte';
 
 	let { data } = $props();
 </script>
@@ -17,5 +19,7 @@
 <Hero settings={data.settings} />
 <WhatsHappening events={data.events} pastEvents={data.pastEvents} />
 <GalleryPreview galleries={data.galleryPreview} />
+<FacebookFeed />
 <SchoolStory settings={data.settings} />
 <CallToAction settings={data.settings} />
+<FindUs settings={data.settings} />

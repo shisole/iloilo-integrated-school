@@ -1,6 +1,6 @@
 <script>
 	import { PortableText } from '@portabletext/svelte';
-	import SanityImage from '$lib/components/shared/SanityImage.svelte';
+	import ImageBlock from './ImageBlock.svelte';
 
 	let { content } = $props();
 </script>
@@ -15,18 +15,3 @@
 		}}
 	/>
 </div>
-
-{#snippet ImageBlock(node)}
-	<figure class="my-8">
-		<SanityImage
-			image={node.value}
-			alt={node.value?.alt || ''}
-			class="w-full rounded-xl"
-		/>
-		{#if node.value?.caption}
-			<figcaption class="mt-2 text-center text-sm text-gray-500">
-				{node.value.caption}
-			</figcaption>
-		{/if}
-	</figure>
-{/snippet}

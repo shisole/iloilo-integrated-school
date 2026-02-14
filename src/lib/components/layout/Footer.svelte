@@ -8,7 +8,7 @@
 
 <footer class="border-t-4 border-accent-blue bg-gray-900 text-gray-300">
 	<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-		<div class="grid gap-8 md:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-4">
 			<!-- School Info -->
 			<div>
 				<h3 class="text-lg font-bold text-white">
@@ -19,6 +19,17 @@
 				{:else}
 					<p class="mt-2 text-sm">Iloilo City, Philippines</p>
 				{/if}
+			</div>
+
+			<!-- Quick Links -->
+			<div>
+				<h3 class="text-lg font-bold text-white">Quick Links</h3>
+				<div class="mt-2 flex flex-col gap-1.5 text-sm">
+					<a href="/admissions" class="transition-colors hover:text-white">Admissions</a>
+					<a href="/calendar" class="transition-colors hover:text-white">Calendar</a>
+					<a href="/faq" class="transition-colors hover:text-white">FAQ</a>
+					<a href="/contact" class="transition-colors hover:text-white">Contact</a>
+				</div>
 			</div>
 
 			<!-- Contact -->

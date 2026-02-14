@@ -132,3 +132,30 @@ export const leadersQuery = `*[_type == "leader"] | order(order asc){
 	bio,
 	order
 }`;
+
+export const admissionsQuery = `*[_type == "admissions"][0]{
+	overview,
+	requirements[]{ title, description },
+	steps[]{ stepNumber, title, description },
+	enrollmentPeriod{ startDate, endDate },
+	contactInfo
+}`;
+
+export const faqQuery = `*[_type == "faq"] | order(order asc){
+	_id,
+	question,
+	answer,
+	category,
+	order
+}`;
+
+export const allEventsQuery = `*[_type == "event"] | order(eventDate asc){
+	_id,
+	title,
+	description,
+	eventDate,
+	endDate,
+	location,
+	image,
+	isFeatured
+}`;
