@@ -43,7 +43,7 @@
 </script>
 
 <section
-	class="relative flex min-h-[70vh] items-center justify-center overflow-hidden"
+	class="relative flex min-h-[70vh] items-center justify-center overflow-hidden py-16 md:py-0"
 	aria-label="Hero carousel"
 	onmouseenter={() => (isPaused = true)}
 	onmouseleave={() => (isPaused = false)}
