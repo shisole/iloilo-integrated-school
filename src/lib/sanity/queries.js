@@ -103,7 +103,8 @@ export const eventByIdQuery = `*[_type == "event" && _id == $id][0]{
 	location,
 	image,
 	isFeatured,
-	keepslyEventId
+	keepslyEventId,
+	qrCodeImage
 }`;
 
 export const latestGalleryEventsQuery = `*[_type == "event" && defined(keepslyEventId)] | order(eventDate desc)[0...2]{

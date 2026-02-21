@@ -160,6 +160,21 @@
 			</div>
 		{/if}
 
+		<!-- QR Code for photo upload -->
+		{#if event.qrCodeImage && isUpcoming}
+			<div class="mt-12 rounded-2xl bg-accent-yellow/20 p-8 text-center">
+				<h2 class="mb-4 text-2xl font-bold text-gray-900">Share Your Photos</h2>
+				<p class="mb-6 text-gray-600">Scan the QR code to upload your event photos</p>
+				<div class="mx-auto max-w-xs">
+					<SanityImage
+						image={event.qrCodeImage}
+						alt="QR Code for photo upload"
+						class="w-full rounded-xl bg-white p-4 shadow-md"
+					/>
+				</div>
+			</div>
+		{/if}
+
 		<!-- Event photos -->
 		{#if data.galleryPhotos.length > 0}
 			<div class="mt-12">
