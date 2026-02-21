@@ -8,33 +8,33 @@
 	const fallbackMilestones = [
 		{
 			year: '2001',
-			title: 'The Beginning',
+			title: 'The Birth of a Dream',
 			description:
-				'Iloilo Integrated School Inc. was founded with a vision to provide quality, accessible education to the children of Iloilo. Starting with just a handful of students, the school opened its doors with heart and determination.'
+				'Founded with 15 students and a handful of dedicated teachers. A promise that learning would be compassionate, that differences would be honored, and no child would be left unseen.'
 		},
 		{
-			year: '2005',
-			title: 'Growing Together',
+			year: '2007',
+			title: 'Tested, But Not Broken',
 			description:
-				'As word spread about our nurturing approach to education, enrollment grew steadily. New classrooms were added, and our dedicated faculty expanded to meet the needs of our growing school family.'
+				'When Typhoon Frank came, the waters rose around the school. Much was lost, but faith remained. IIS rebuilt — not because it was easy, but because giving up was never an option.'
 		},
 		{
-			year: '2010',
-			title: 'A Decade of Excellence',
+			year: '2020',
+			title: 'Surviving the Silence',
 			description:
-				'Celebrating ten years of shaping young minds, the school earned recognition for its commitment to holistic education — blending academics, values formation, and creative expression.'
+				'Classrooms closed and the world paused. But the mission did not. IIS taught through screens, cared through distance, and kept doors open — not always in buildings, but always in spirit.'
 		},
 		{
-			year: '2018',
-			title: 'Embracing Innovation',
+			year: '2023',
+			title: 'Honoring Our Founder',
 			description:
-				'The school integrated modern teaching methods and technology into the classroom, preparing students for the demands of the 21st century while staying rooted in Filipino values.'
+				'IIS lost Dr. Ronnie Samoro — founder, mentor, and guiding light. He taught that education is love in action, and that a school is built not by walls, but by vision. His dream lives on in all of us.'
 		},
 		{
-			year: 'Today',
-			title: 'Continuing the Legacy',
+			year: '2026',
+			title: '25 Years of Hope',
 			description:
-				'With over two decades of service, Iloilo Integrated School continues to be a beacon of learning and growth in the community — nurturing the next generation of leaders, dreamers, and achievers.'
+				'From 15 students to generations of dreamers, leaders, and achievers. Twenty-five years of courage, endurance, and a dream that learned to survive — and to move forward.'
 		}
 	];
 
