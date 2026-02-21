@@ -1,6 +1,6 @@
 import { getClient } from '$lib/sanity/client.js';
 import { eventsWithGalleryQuery } from '$lib/sanity/queries.js';
-import { fetchKeepslyPhotos } from '$lib/utils/keepsly.js';
+import { fetchKeepslyPhotoPaged } from '$lib/utils/keepsly.js';
 
 export async function load() {
 	const client = getClient();
@@ -12,13 +12,15 @@ export async function load() {
 
 		const galleries = await Promise.all(
 			events.map(async (event) => {
-				const { photos } = await fetchKeepslyPhotos(event.keepslyEventId);
-				return { ...event, photos };
+				const { photos, totalPhotos, nextCursor, hasMore } = await fetchKeepslyPhotoPaged(
+					event.keepslyEventId
+				);
+				return { ...event, photos, totalPhotos, nextCursor, hasMore };
 			})
 		);
 
 		return {
-			galleries: galleries.filter((g) => g.photos.length > 0)
+			galleries: galleries.filter((g) => g.totalPhotos > 0)
 		};
 	} catch {
 		return { galleries: [] };

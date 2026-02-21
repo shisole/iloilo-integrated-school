@@ -48,12 +48,15 @@
 									{#if gallery.location}
 										<span>{gallery.location}</span>
 									{/if}
-									<span>{gallery.photos.length} photos</span>
+									<span>{gallery.totalPhotos} photos</span>
 								</div>
 							</div>
 							<PhotoGrid
 								photos={gallery.photos}
-								onphotoclick={(index) => openLightbox(gallery.photos, index)}
+								eventId={gallery.keepslyEventId}
+								totalPhotos={gallery.totalPhotos}
+								nextCursor={gallery.nextCursor}
+								onphotoclick={(index, photos) => openLightbox(photos, index)}
 							/>
 						</div>
 					{/each}
