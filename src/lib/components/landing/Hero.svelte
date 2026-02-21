@@ -10,11 +10,25 @@
 	let images = $derived(settings?.heroImages ?? []);
 	let hasImages = $derived(images.length > 0);
 	let hasMultipleImages = $derived(images.length > 1);
-	let imageUrls = $derived(images.map((img) => urlFor(img).width(1920).quality(80).url()));
 
 	let currentIndex = $state(0);
 	let isPaused = $state(false);
 	let timerVersion = $state(0);
+
+	// Generate responsive image URL for current and next slides
+	function getImageUrl(img, width = 1920) {
+		return urlFor(img).width(width).quality(80).url();
+	}
+
+	let currentImageUrl = $derived(
+		hasImages ? getImageUrl(images[currentIndex]) : ''
+	);
+
+	let nextImageUrl = $derived(
+		hasMultipleImages
+			? getImageUrl(images[(currentIndex + 1) % images.length])
+			: ''
+	);
 
 	function next() {
 		currentIndex = (currentIndex + 1) % images.length;
@@ -42,6 +56,13 @@
 	});
 </script>
 
+<svelte:head>
+	<!-- Preload next carousel image for smooth transitions -->
+	{#if nextImageUrl}
+		<link rel="preload" as="image" href={nextImageUrl} />
+	{/if}
+</svelte:head>
+
 <section
 	class="relative flex min-h-[70vh] items-center justify-center overflow-hidden py-16 md:py-0"
 	aria-label="Hero carousel"
@@ -49,13 +70,13 @@
 	onmouseleave={() => (isPaused = false)}
 >
 	{#if hasImages}
-		<!-- Carousel background images -->
-		{#each imageUrls as url, i}
+		<!-- Current carousel image only -->
+		{#key currentIndex}
 			<div
-				class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-				style="background-image: url({url}); opacity: {i === currentIndex ? 1 : 0};"
+				class="absolute inset-0 animate-fade-in bg-cover bg-center"
+				style="background-image: url({currentImageUrl});"
 			></div>
-		{/each}
+		{/key}
 		<!-- Dark overlay for text contrast -->
 		<div class="absolute inset-0 bg-black/40"></div>
 	{:else}
@@ -196,3 +217,18 @@
 		</svg>
 	</button>
 </section>
+
+<style>
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.animate-fade-in {
+		animation: fade-in 1s ease-in-out;
+	}
+</style>
