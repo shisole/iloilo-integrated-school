@@ -4,6 +4,7 @@
 	import Navbar from '$lib/components/layout/Navbar.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import CubeLoader from '$lib/components/shared/CubeLoader.svelte';
+	import BackToTop from '$lib/components/shared/BackToTop.svelte';
 
 	let { data, children } = $props();
 </script>
@@ -21,3 +22,5 @@
 
 	<Footer settings={data.settings} />
 </div>
+
+<BackToTop />

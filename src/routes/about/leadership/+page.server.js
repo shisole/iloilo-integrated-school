@@ -1,14 +1,5 @@
-import { getClient } from '$lib/sanity/client.js';
-import { leadersQuery } from '$lib/sanity/queries.js';
+import { redirect } from '@sveltejs/kit';
 
-export async function load() {
-	const client = getClient();
-	if (!client) return { leaders: [] };
-
-	try {
-		const leaders = await client.fetch(leadersQuery);
-		return { leaders: leaders || [] };
-	} catch {
-		return { leaders: [] };
-	}
+export function load() {
+	redirect(301, '/about#leadership');
 }

@@ -19,9 +19,9 @@
 
 	const aboutDropdown = [
 		{ href: '/about', label: 'Mission & Vision' },
-		{ href: '/about/leadership', label: 'Leadership' },
-		{ href: '/calendar', label: 'Calendar' },
-		{ href: '/faq', label: 'FAQ' }
+		{ href: '/about#leadership', label: 'Leadership' },
+		{ href: '/about#faq', label: 'FAQ' },
+		{ href: '/calendar', label: 'Calendar' }
 	];
 
 	function isActive(href) {
@@ -33,16 +33,40 @@
 
 	let isAboutActive = $derived(
 		page.url.pathname.startsWith('/about') ||
-		page.url.pathname.startsWith('/calendar') ||
-		page.url.pathname.startsWith('/faq')
+		page.url.pathname.startsWith('/calendar')
 	);
 
 	let isScrolled = $state(false);
+	let currentHash = $state('');
 
-	// Close mobile menu on navigation
+	function isDropdownActive(href) {
+		// Calendar or other non-about pages: match pathname directly
+		if (!href.startsWith('/about')) {
+			return page.url.pathname === href;
+		}
+		// Mission & Vision: active when on /about with no hash or #mission-vision
+		if (href === '/about') {
+			return page.url.pathname === '/about' && (!currentHash || currentHash === '#mission-vision');
+		}
+		// Other about sections: match pathname + hash
+		return page.url.pathname === '/about' && href === '/about' + currentHash;
+	}
+
+	// Close mobile menu on navigation + reset hash
 	$effect(() => {
 		page.url.pathname;
 		isMenuOpen = false;
+		currentHash = typeof window !== 'undefined' ? window.location.hash : '';
+	});
+
+	// Track hash changes
+	$effect(() => {
+		currentHash = window.location.hash;
+		function onHashChange() {
+			currentHash = window.location.hash;
+		}
+		window.addEventListener('hashchange', onHashChange);
+		return () => window.removeEventListener('hashchange', onHashChange);
 	});
 
 	$effect(() => {
@@ -105,7 +129,7 @@
 							{#each aboutDropdown as item}
 								<a
 									href={item.href}
-									class="block px-4 py-2 text-sm transition-colors {page.url.pathname === item.href
+									class="block px-4 py-2 text-sm transition-colors {isDropdownActive(item.href)
 										? 'bg-accent-blue/10 text-accent-blue-dark'
 										: 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}"
 								>

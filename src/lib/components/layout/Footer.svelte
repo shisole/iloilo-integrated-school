@@ -27,7 +27,7 @@
 				<div class="mt-2 flex flex-col gap-1.5 text-sm">
 					<a href="/admissions" class="transition-colors hover:text-white">Admissions</a>
 					<a href="/calendar" class="transition-colors hover:text-white">Calendar</a>
-					<a href="/faq" class="transition-colors hover:text-white">FAQ</a>
+					<a href="/about#faq" class="transition-colors hover:text-white">FAQ</a>
 					<a href="/contact" class="transition-colors hover:text-white">Contact</a>
 				</div>
 			</div>

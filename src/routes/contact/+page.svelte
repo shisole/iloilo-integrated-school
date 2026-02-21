@@ -10,6 +10,48 @@
 	let settings = $derived(data.settings);
 
 	let hasContactInfo = $derived(settings?.address || settings?.phone || settings?.email || settings?.facebookUrl);
+
+	// Contact form state
+	let formData = $state({ name: '', email: '', subject: '', message: '' });
+	let errors = $state({});
+	let isSubmitting = $state(false);
+	let submitSuccess = $state(false);
+
+	function validateEmail(email) {
+		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+	}
+
+	function validate() {
+		let newErrors = {};
+		if (!formData.name.trim()) newErrors.name = 'Name is required';
+		if (!formData.email.trim()) {
+			newErrors.email = 'Email is required';
+		} else if (!validateEmail(formData.email)) {
+			newErrors.email = 'Please enter a valid email address';
+		}
+		if (!formData.message.trim()) newErrors.message = 'Message is required';
+		errors = newErrors;
+		return Object.keys(newErrors).length === 0;
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		if (!validate()) return;
+
+		isSubmitting = true;
+
+		// Simulate submission delay (replace with actual backend later)
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		isSubmitting = false;
+		submitSuccess = true;
+		formData = { name: '', email: '', subject: '', message: '' };
+
+		// Reset success message after 5 seconds
+		setTimeout(() => {
+			submitSuccess = false;
+		}, 5000);
+	}
 </script>
 
 <SEO
@@ -84,6 +126,108 @@
 								</a>
 							</div>
 						{/if}
+					</div>
+				{/snippet}
+			</ScrollReveal>
+
+			<!-- Contact Form -->
+			<ScrollReveal>
+				{#snippet children()}
+					<div class="mt-16">
+						<h3 class="text-2xl font-bold text-gray-900">Send Us a Message</h3>
+						<div class="mt-3 h-1 w-16 rounded-full bg-accent-yellow"></div>
+
+						{#if submitSuccess}
+							<div class="mt-8 rounded-xl border border-green-200 bg-green-50 p-6 text-center">
+								<svg class="mx-auto mb-3 h-10 w-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								<p class="font-semibold text-green-800">Message sent successfully!</p>
+								<p class="mt-1 text-sm text-green-600">We'll get back to you as soon as possible.</p>
+							</div>
+						{/if}
+
+						<form onsubmit={handleSubmit} class="mt-8 space-y-6" novalidate>
+							<div class="grid gap-6 sm:grid-cols-2">
+								<!-- Name -->
+								<div>
+									<label for="name" class="block text-sm font-medium text-gray-700">Name <span class="text-red-500">*</span></label>
+									<input
+										id="name"
+										type="text"
+										bind:value={formData.name}
+										class="mt-1.5 block w-full rounded-lg border px-4 py-3 text-sm shadow-sm transition focus:outline-none focus:ring-2 {errors.name ? 'border-red-300 focus:border-red-400 focus:ring-red-200' : 'border-gray-200 focus:border-accent-blue focus:ring-accent-blue/20'}"
+										placeholder="Your full name"
+									/>
+									{#if errors.name}
+										<p class="mt-1.5 text-xs text-red-500">{errors.name}</p>
+									{/if}
+								</div>
+
+								<!-- Email -->
+								<div>
+									<label for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
+									<input
+										id="email"
+										type="email"
+										bind:value={formData.email}
+										class="mt-1.5 block w-full rounded-lg border px-4 py-3 text-sm shadow-sm transition focus:outline-none focus:ring-2 {errors.email ? 'border-red-300 focus:border-red-400 focus:ring-red-200' : 'border-gray-200 focus:border-accent-blue focus:ring-accent-blue/20'}"
+										placeholder="your@email.com"
+									/>
+									{#if errors.email}
+										<p class="mt-1.5 text-xs text-red-500">{errors.email}</p>
+									{/if}
+								</div>
+							</div>
+
+							<!-- Subject -->
+							<div>
+								<label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+								<input
+									id="subject"
+									type="text"
+									bind:value={formData.subject}
+									class="mt-1.5 block w-full rounded-lg border border-gray-200 px-4 py-3 text-sm shadow-sm transition focus:border-accent-blue focus:outline-none focus:ring-2 focus:ring-accent-blue/20"
+									placeholder="What is this about?"
+								/>
+							</div>
+
+							<!-- Message -->
+							<div>
+								<label for="message" class="block text-sm font-medium text-gray-700">Message <span class="text-red-500">*</span></label>
+								<textarea
+									id="message"
+									bind:value={formData.message}
+									rows="5"
+									class="mt-1.5 block w-full resize-none rounded-lg border px-4 py-3 text-sm shadow-sm transition focus:outline-none focus:ring-2 {errors.message ? 'border-red-300 focus:border-red-400 focus:ring-red-200' : 'border-gray-200 focus:border-accent-blue focus:ring-accent-blue/20'}"
+									placeholder="Your message..."
+								></textarea>
+								{#if errors.message}
+									<p class="mt-1.5 text-xs text-red-500">{errors.message}</p>
+								{/if}
+							</div>
+
+							<div>
+								<button
+									type="submit"
+									disabled={isSubmitting}
+									class="inline-flex items-center gap-2 rounded-full bg-accent-blue px-8 py-3.5 font-semibold text-white shadow-lg transition hover:bg-accent-blue-dark disabled:cursor-not-allowed disabled:opacity-50"
+								>
+									{#if isSubmitting}
+										<svg class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
+											<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+											<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+										</svg>
+										Sending...
+									{:else}
+										Send Message
+										<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+										</svg>
+									{/if}
+								</button>
+							</div>
+						</form>
 					</div>
 				{/snippet}
 			</ScrollReveal>
