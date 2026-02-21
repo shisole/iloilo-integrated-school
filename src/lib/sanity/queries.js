@@ -13,7 +13,10 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
 	missionText,
 	missionImage,
 	visionText,
-	visionImage
+	visionImage,
+	coreValues[]{ title, description },
+	founderTribute{ name, role, photo, quote, description },
+	anniversaryTagline
 }`;
 
 export const latestEventsQuery = `*[_type == "event" && eventDate >= now()] | order(eventDate asc)[0...4]{
