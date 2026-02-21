@@ -2,6 +2,7 @@
 	import SEO from '$lib/components/shared/SEO.svelte';
 	import Hero from '$lib/components/landing/Hero.svelte';
 	import SchoolStory from '$lib/components/landing/SchoolStory.svelte';
+	import OurHeart from '$lib/components/landing/OurHeart.svelte';
 	import WhatsHappening from '$lib/components/landing/WhatsHappening.svelte';
 	import CallToAction from '$lib/components/landing/CallToAction.svelte';
 	import GalleryPreview from '$lib/components/landing/GalleryPreview.svelte';
@@ -21,5 +22,6 @@
 <GalleryPreview galleries={data.galleryPreview} />
 <FacebookFeed />
 <SchoolStory settings={data.settings} />
+<OurHeart settings={data.settings} />
 <CallToAction settings={data.settings} />
 <FindUs settings={data.settings} />
