@@ -68,7 +68,7 @@
 				{@const colors = accentColors[i % accentColors.length]}
 				<ScrollReveal delay={i * 80}>
 					{#snippet children()}
-						<div class="rounded-2xl border {colors.border} {colors.bg} p-8 shadow-md transition-shadow hover:shadow-lg">
+						<div class="rounded-2xl border {colors.border} {colors.bg} p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.16)]">
 							<svg class="mb-4 h-8 w-8 {colors.icon}" fill="currentColor" viewBox="0 0 24 24">
 								<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
 							</svg>
