@@ -59,11 +59,11 @@
 				<!-- Marquee: 4+ testimonials, infinite horizontal scroll -->
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div
-					class="marquee-container mt-12 overflow-hidden"
+					class="marquee-container mt-12 overflow-x-hidden overflow-y-visible"
 					onmouseenter={() => (isPaused = true)}
 					onmouseleave={() => (isPaused = false)}
 				>
-					<div class="marquee-track" class:paused={isPaused}>
+					<div class="marquee-track py-4" class:paused={isPaused}>
 						{#each [0, 1] as _set}
 							{#each testimonials as testimonial}
 								<div class="mx-3 w-80 shrink-0 rounded-2xl border border-gray-100 bg-card p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] md:w-96">
