@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/state';
 	import { SCHOOL_NAME } from '$lib/utils/constants.js';
 	import { urlFor } from '$lib/sanity/image.js';
 
@@ -11,9 +12,13 @@
 		type = 'website'
 	} = $props();
 
+	let origin = $derived(page.url?.origin || '');
+
 	let resolvedImage = $derived(
-		image || (ogImage ? urlFor(ogImage).width(1200).height(630).url() : '/images/logo.png')
+		image || (ogImage ? urlFor(ogImage).width(1200).height(630).url() : `${origin}/images/logo.png`)
 	);
+
+	let pageUrl = $derived(url || page.url?.href || '');
 
 	let fullTitle = $derived(title ? `${title} | ${SCHOOL_NAME}` : SCHOOL_NAME);
 
@@ -46,9 +51,11 @@
 	<meta property="og:type" content={type} />
 	{#if resolvedImage}
 		<meta property="og:image" content={resolvedImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 	{/if}
-	{#if url}
-		<meta property="og:url" content={url} />
+	{#if pageUrl}
+		<meta property="og:url" content={pageUrl} />
 	{/if}
 	<meta property="og:site_name" content={SCHOOL_NAME} />
 
