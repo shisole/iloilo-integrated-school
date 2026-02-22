@@ -66,7 +66,7 @@
 					<div class="marquee-track" class:paused={isPaused}>
 						{#each [0, 1] as _set}
 							{#each testimonials as testimonial}
-								<div class="mx-3 w-80 shrink-0 rounded-2xl border border-gray-100 bg-card p-6 shadow-sm md:w-96">
+								<div class="mx-3 w-80 shrink-0 rounded-2xl border border-gray-100 bg-card p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] md:w-96">
 									<svg class="mb-3 h-6 w-6 text-accent-yellow" fill="currentColor" viewBox="0 0 24 24">
 										<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
 									</svg>
