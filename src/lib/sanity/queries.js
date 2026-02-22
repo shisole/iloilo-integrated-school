@@ -19,7 +19,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
 	anniversaryTagline,
 	whyChooseUs[]{ title, description },
 	schoolStats[]{ value, label },
-	testimonials[]{ quote, name, role }
+	testimonials[]{ quote, name, role },
+	ogImage
 }`;
 
 export const latestEventsQuery = `*[_type == "event" && eventDate >= now()] | order(eventDate asc)[0...4]{

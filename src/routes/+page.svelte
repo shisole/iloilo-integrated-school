@@ -18,6 +18,7 @@
 <SEO
 	title="Iloilo Integrated School Inc."
 	description="Quality elementary education in Iloilo since 2001. Nurturing young minds through holistic learning, values formation, and creative expression."
+	ogImage={data.settings?.ogImage}
 />
 
 <Hero settings={data.settings} />

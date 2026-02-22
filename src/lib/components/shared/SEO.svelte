@@ -1,13 +1,19 @@
 <script>
 	import { SCHOOL_NAME } from '$lib/utils/constants.js';
+	import { urlFor } from '$lib/sanity/image.js';
 
 	let {
 		title = '',
 		description = 'Official website of Iloilo Integrated School Inc. Nurturing young minds since 2001.',
-		image = '/images/logo.png',
+		image = '',
+		ogImage = null,
 		url = '',
 		type = 'website'
 	} = $props();
+
+	let resolvedImage = $derived(
+		image || (ogImage ? urlFor(ogImage).width(1200).height(630).url() : '/images/logo.png')
+	);
 
 	let fullTitle = $derived(title ? `${title} | ${SCHOOL_NAME}` : SCHOOL_NAME);
 
@@ -38,8 +44,8 @@
 	<meta property="og:title" content={fullTitle} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content={type} />
-	{#if image}
-		<meta property="og:image" content={image} />
+	{#if resolvedImage}
+		<meta property="og:image" content={resolvedImage} />
 	{/if}
 	{#if url}
 		<meta property="og:url" content={url} />
@@ -50,8 +56,8 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={fullTitle} />
 	<meta name="twitter:description" content={description} />
-	{#if image}
-		<meta name="twitter:image" content={image} />
+	{#if resolvedImage}
+		<meta name="twitter:image" content={resolvedImage} />
 	{/if}
 
 	<!-- JSON-LD Structured Data -->
