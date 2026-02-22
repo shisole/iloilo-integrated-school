@@ -18,7 +18,9 @@
 />
 
 <Hero settings={data.settings} />
-<WhatsHappening events={data.events} pastEvents={data.pastEvents} />
+{#if data.events.length > 0}
+	<WhatsHappening events={data.events} pastEvents={data.pastEvents} />
+{/if}
 <GalleryPreview galleries={data.galleryPreview} />
 <FacebookFeed />
 <SchoolStory settings={data.settings} />
