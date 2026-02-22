@@ -43,10 +43,7 @@
 		data.settings?.testimonials?.length ? data.settings.testimonials : fallbackTestimonials
 	);
 
-	const accentColors = [
-		{ border: 'border-accent-blue/30', bg: 'bg-accent-blue/5', icon: 'text-accent-blue' },
-		{ border: 'border-accent-yellow/50', bg: 'bg-accent-yellow/10', icon: 'text-accent-yellow-dark' },
-	];
+	const quoteColors = ['text-accent-yellow', 'text-accent-blue'];
 </script>
 
 <SEO
@@ -65,11 +62,10 @@
 
 		<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
 			{#each testimonials as testimonial, i}
-				{@const colors = accentColors[i % accentColors.length]}
 				<ScrollReveal delay={i * 80}>
 					{#snippet children()}
-						<div class="rounded-2xl border {colors.border} {colors.bg} p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.16)]">
-							<svg class="mb-4 h-8 w-8 {colors.icon}" fill="currentColor" viewBox="0 0 24 24">
+						<div class="rounded-2xl border border-gray-100 bg-card p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.16)]">
+							<svg class="mb-4 h-8 w-8 {quoteColors[i % quoteColors.length]}" fill="currentColor" viewBox="0 0 24 24">
 								<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
 							</svg>
 							<blockquote class="mb-5 text-gray-700 italic leading-relaxed">
