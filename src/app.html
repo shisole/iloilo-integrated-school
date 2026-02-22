@@ -9,6 +9,25 @@
 		%sveltekit.head%
 	</head>
 	<body class="bg-page font-body text-gray-800 antialiased">
+		<div id="initial-loader" style="position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#f7fcfe">
+			<img src="%sveltekit.assets%/images/logo.png" alt="" width="80" height="80" style="animation:pulse 1.5s ease-in-out infinite">
+			<style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
+		</div>
 		<div style="display: contents">%sveltekit.body%</div>
+		<script>
+			// Remove initial loader once the app hydrates
+			if (document.getElementById('initial-loader')) {
+				const observer = new MutationObserver(() => {
+					const loader = document.getElementById('initial-loader');
+					if (loader) {
+						loader.style.transition = 'opacity 0.3s';
+						loader.style.opacity = '0';
+						setTimeout(() => loader.remove(), 300);
+					}
+					observer.disconnect();
+				});
+				observer.observe(document.body, { childList: true, subtree: true });
+			}
+		</script>
 	</body>
 </html>
