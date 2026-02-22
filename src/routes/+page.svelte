@@ -1,6 +1,9 @@
 <script>
 	import SEO from '$lib/components/shared/SEO.svelte';
 	import Hero from '$lib/components/landing/Hero.svelte';
+	import WhyChooseIIS from '$lib/components/landing/WhyChooseIIS.svelte';
+	import ByTheNumbers from '$lib/components/landing/ByTheNumbers.svelte';
+	import WhatParentsSay from '$lib/components/landing/WhatParentsSay.svelte';
 	import SchoolStory from '$lib/components/landing/SchoolStory.svelte';
 	import OurHeart from '$lib/components/landing/OurHeart.svelte';
 	import WhatsHappening from '$lib/components/landing/WhatsHappening.svelte';
@@ -18,6 +21,9 @@
 />
 
 <Hero settings={data.settings} />
+<WhyChooseIIS settings={data.settings} />
+<ByTheNumbers settings={data.settings} />
+<WhatParentsSay settings={data.settings} />
 {#if data.events.length > 0}
 	<WhatsHappening events={data.events} pastEvents={data.pastEvents} />
 {/if}
