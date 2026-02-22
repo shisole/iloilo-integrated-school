@@ -19,6 +19,21 @@
 			quote: "We chose IIS because of their heart. Twenty-five years later, they still treat every family like their own.",
 			name: 'Ana L.',
 			role: 'Parent of Grade 1 student'
+		},
+		{
+			quote: 'The school feels like family. My children have grown not just academically, but as kind and confident individuals.',
+			name: 'Elena D.',
+			role: 'Parent of Grade 2 and Grade 6 students'
+		},
+		{
+			quote: 'IIS taught my child that being smart is not just about grades — it is about heart, effort, and kindness.',
+			name: 'Carlos M.',
+			role: 'Parent of Grade 4 student'
+		},
+		{
+			quote: 'From day one, the teachers made my daughter feel welcome and safe. That is something you cannot put a price on.',
+			name: 'Grace T.',
+			role: 'Parent of Grade 1 student'
 		}
 	];
 
@@ -26,20 +41,8 @@
 		settings?.testimonials?.length ? settings.testimonials : fallbackTestimonials
 	);
 
-	let currentIndex = $state(0);
+	let useMarquee = $derived(testimonials.length >= 4);
 	let isPaused = $state(false);
-
-	$effect(() => {
-		if (testimonials.length <= 1 || isPaused) return;
-		const interval = setInterval(() => {
-			currentIndex = (currentIndex + 1) % testimonials.length;
-		}, 6000);
-		return () => clearInterval(interval);
-	});
-
-	function goTo(index) {
-		currentIndex = index;
-	}
 </script>
 
 <section class="py-20 md:py-28">
@@ -48,62 +51,78 @@
 			title="What Parents Say"
 			subtitle="Hear from families who call IIS home"
 		/>
+	</div>
 
-		<ScrollReveal>
-			{#snippet children()}
+	<ScrollReveal>
+		{#snippet children()}
+			{#if useMarquee}
+				<!-- Marquee: 4+ testimonials, infinite horizontal scroll -->
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div
-					class="mx-auto mt-12 max-w-2xl text-center"
+					class="marquee-container mt-12 overflow-hidden"
 					onmouseenter={() => (isPaused = true)}
 					onmouseleave={() => (isPaused = false)}
 				>
-					<svg class="mx-auto mb-6 h-10 w-10 text-accent-yellow" fill="currentColor" viewBox="0 0 24 24">
-						<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
-					</svg>
-
-					{#key currentIndex}
-						<div class="animate-fade-in">
-							<blockquote class="mb-6 text-lg text-gray-700 italic md:text-xl">
-								"{testimonials[currentIndex].quote}"
-							</blockquote>
-							<p class="font-bold text-gray-900">{testimonials[currentIndex].name}</p>
-							<p class="text-sm text-gray-500">{testimonials[currentIndex].role}</p>
-						</div>
-					{/key}
-
-					{#if testimonials.length > 1}
-						<div class="mt-8 flex items-center justify-center gap-2">
-							{#each testimonials as _, i}
-								<button
-									type="button"
-									class="h-2.5 w-2.5 cursor-pointer rounded-full transition-all {i === currentIndex
-										? 'scale-125 bg-accent-blue-dark'
-										: 'bg-gray-300 hover:bg-gray-400'}"
-									aria-label="Go to testimonial {i + 1}"
-									onclick={() => goTo(i)}
-								></button>
+					<div class="marquee-track" class:paused={isPaused}>
+						{#each [0, 1] as _set}
+							{#each testimonials as testimonial}
+								<div class="mx-3 w-80 shrink-0 rounded-2xl border border-gray-100 bg-card p-6 shadow-sm md:w-96">
+									<svg class="mb-3 h-6 w-6 text-accent-yellow" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
+									</svg>
+									<blockquote class="mb-4 text-sm text-gray-700 italic">
+										"{testimonial.quote}"
+									</blockquote>
+									<p class="font-bold text-gray-900">{testimonial.name}</p>
+									<p class="text-xs text-gray-500">{testimonial.role}</p>
+								</div>
 							{/each}
-						</div>
-					{/if}
+						{/each}
+					</div>
 				</div>
-			{/snippet}
-		</ScrollReveal>
-	</div>
+			{:else}
+				<!-- Static: fewer than 4 testimonials, centered stack -->
+				<div class="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-8 px-6">
+					{#each testimonials as testimonial}
+						<div class="text-center">
+							<svg class="mx-auto mb-4 h-8 w-8 text-accent-yellow" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
+							</svg>
+							<blockquote class="mb-4 text-lg text-gray-700 italic">
+								"{testimonial.quote}"
+							</blockquote>
+							<p class="font-bold text-gray-900">{testimonial.name}</p>
+							<p class="text-sm text-gray-500">{testimonial.role}</p>
+						</div>
+					{/each}
+				</div>
+			{/if}
+		{/snippet}
+	</ScrollReveal>
 </section>
 
 <style>
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-			transform: translateY(8px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	.marquee-container {
+		-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+		mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 	}
 
-	.animate-fade-in {
-		animation: fade-in 0.5s ease-out;
+	.marquee-track {
+		display: flex;
+		width: max-content;
+		animation: marquee 40s linear infinite;
+	}
+
+	.marquee-track.paused {
+		animation-play-state: paused;
+	}
+
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
 	}
 </style>
