@@ -24,7 +24,7 @@
 		return { num: null, suffix: '', text: val };
 	}
 
-	let animatedValues = $state(stats.map(() => 0));
+	let animatedValues = $state(Array(4).fill(0));
 
 	$effect(() => {
 		if (!sectionEl) return;
