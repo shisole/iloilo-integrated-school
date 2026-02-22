@@ -97,6 +97,18 @@
 					{/each}
 				</div>
 			{/if}
+
+			<div class="mt-10 text-center">
+				<a
+					href="/testimonials"
+					class="inline-flex items-center gap-2 font-semibold text-accent-blue-dark transition hover:gap-3"
+				>
+					View All Testimonials
+					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+					</svg>
+				</a>
+			</div>
 		{/snippet}
 	</ScrollReveal>
 </section>
