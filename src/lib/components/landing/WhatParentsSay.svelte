@@ -48,8 +48,8 @@
 <section class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
 		<SectionHeading
-			title="What Parents Say"
-			subtitle="Hear from families who call IIS home"
+			title="What Parents & Alumni Say"
+			subtitle="Hear from families and graduates who call IIS home"
 		/>
 	</div>
 

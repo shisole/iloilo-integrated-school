@@ -59,8 +59,8 @@
 	<div class="mx-auto max-w-5xl px-6">
 		<Breadcrumb items={[{ label: 'Testimonials' }]} />
 		<SectionHeading
-			title="What Parents Say"
-			subtitle="Stories from families who trust IIS with their children's future"
+			title="What Parents & Alumni Say"
+			subtitle="Stories from families and graduates who trust IIS with their future"
 		/>
 
 		<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
