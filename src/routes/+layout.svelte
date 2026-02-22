@@ -13,7 +13,7 @@
 	<CubeLoader />
 {/if}
 
-<div class="flex min-h-screen flex-col bg-page font-body">
+<div class="flex min-h-screen flex-col bg-page bg-gradient-to-b from-accent-blue/[0.03] via-transparent to-accent-yellow/[0.03] font-body">
 	<Navbar settings={data.settings} />
 
 	<main class="flex-1">
