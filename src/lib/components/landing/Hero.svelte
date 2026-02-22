@@ -198,9 +198,9 @@
 		class="absolute bottom-2 left-1/2 z-20 hidden -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 transition-colors md:block {hasImages
 			? 'hover:bg-white/20'
 			: 'hover:bg-gray-900/10'}"
-		aria-label="Scroll to What's Happening"
+		aria-label="Scroll down"
 		onclick={() =>
-			document.getElementById('whats-happening')?.scrollIntoView({ behavior: 'smooth' })}
+			document.getElementById('why-choose-iis')?.scrollIntoView({ behavior: 'smooth' })}
 	>
 		<svg
 			class="h-6 w-6 {hasImages ? 'text-white/70' : 'text-gray-400'}"

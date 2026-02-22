@@ -39,7 +39,7 @@
 	);
 </script>
 
-<section class="py-20 md:py-28">
+<section id="why-choose-iis" class="py-20 md:py-28">
 	<div class="mx-auto max-w-6xl px-6">
 		<SectionHeading
 			title="Why Choose IIS?"
