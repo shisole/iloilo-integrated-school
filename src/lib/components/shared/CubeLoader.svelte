@@ -1,3 +1,7 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-page/80 backdrop-blur-sm">
-	<div class="h-10 w-10 animate-spin rounded-full border-4 border-accent-blue/30 border-t-accent-blue"></div>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-page/90 backdrop-blur-sm">
+	<img
+		src="/images/logo.png"
+		alt="Loading"
+		class="h-20 w-20 animate-pulse object-contain"
+	/>
 </div>
