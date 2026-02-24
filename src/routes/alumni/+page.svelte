@@ -56,10 +56,21 @@
 							<h3 class="text-2xl font-bold text-gray-900">Executive Officers</h3>
 							<div class="mt-2 h-1 w-12 rounded-full bg-accent-yellow"></div>
 							{#if executive.length > 0}
-								<div class="mx-auto mt-8 flex max-w-md flex-col gap-4">
-									{#each executive as officer}
-										<OfficerCard {officer} />
-									{/each}
+								<div class="mt-8">
+									<!-- President featured on top -->
+									{#if executive[0]}
+										<div class="mx-auto max-w-sm">
+											<OfficerCard officer={executive[0]} featured={true} />
+										</div>
+									{/if}
+									<!-- Remaining officers in grid -->
+									{#if executive.length > 1}
+										<div class="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2">
+											{#each executive.slice(1) as officer}
+												<OfficerCard {officer} />
+											{/each}
+										</div>
+									{/if}
 								</div>
 							{:else}
 								<p class="mt-6 text-gray-500">Officer information coming soon.</p>
@@ -75,7 +86,7 @@
 							<h3 class="text-2xl font-bold text-gray-900">Business Managers</h3>
 							<div class="mt-2 h-1 w-12 rounded-full bg-accent-yellow"></div>
 							{#if business.length > 0}
-								<div class="mx-auto mt-8 flex max-w-md flex-col gap-4">
+								<div class="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
 									{#each business as officer}
 										<OfficerCard {officer} />
 									{/each}
