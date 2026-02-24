@@ -175,3 +175,29 @@ export const latestFacebookPostsQuery = `*[_type == "facebookPost"] | order(post
 	postUrl,
 	postedAt
 }`;
+
+export const alumniOfficersQuery = `*[_type == "alumniOfficer"] | order(
+	select(
+		category == "executive" => 0,
+		category == "business" => 1,
+		category == "batch" => 2
+	) asc,
+	order asc
+){
+	_id,
+	name,
+	role,
+	category,
+	photo,
+	batchYear,
+	order
+}`;
+
+export const alumniSpotlightsQuery = `*[_type == "alumniSpotlight"] | order(order asc){
+	_id,
+	name,
+	photo,
+	batch,
+	quote,
+	order
+}`;

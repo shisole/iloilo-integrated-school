@@ -13,6 +13,7 @@
 		{ href: '/news', label: 'News' },
 		{ href: '/blog', label: 'Blog' },
 		{ href: '/gallery', label: 'Gallery' },
+		{ href: '/alumni', label: 'Alumni' },
 		{ href: '/admissions', label: 'Admissions' },
 		{ href: '/contact', label: 'Contact' }
 	];
