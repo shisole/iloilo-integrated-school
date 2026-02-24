@@ -56,7 +56,7 @@
 							<h3 class="text-2xl font-bold text-gray-900">Executive Officers</h3>
 							<div class="mt-2 h-1 w-12 rounded-full bg-accent-yellow"></div>
 							{#if executive.length > 0}
-								<div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+								<div class="mx-auto mt-8 flex max-w-md flex-col gap-4">
 									{#each executive as officer}
 										<OfficerCard {officer} />
 									{/each}
@@ -75,7 +75,7 @@
 							<h3 class="text-2xl font-bold text-gray-900">Business Managers</h3>
 							<div class="mt-2 h-1 w-12 rounded-full bg-accent-yellow"></div>
 							{#if business.length > 0}
-								<div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+								<div class="mx-auto mt-8 flex max-w-md flex-col gap-4">
 									{#each business as officer}
 										<OfficerCard {officer} />
 									{/each}
